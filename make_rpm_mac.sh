@@ -37,7 +37,7 @@ if [ "$(docker ps -a --format '{{.Names}}' | grep -w builder)" == "builder" ]; t
 else
     log_info "Building docker container for builds (first time)"
     docker run --privileged -d --name builder --network host rockylinux:9 /bin/sleep infinity > /dev/null 2>&1
-    log_info "Preparing container for redborder builds..."
+    log_info "Preparing container for builds..."
     docker exec builder bash -c "yum install -y epel-release && yum install -y make git mock" > /dev/null 2>&1
     docker exec builder bash -c "git config --global --add safe.directory /build" > /dev/null 2>&1
 fi
